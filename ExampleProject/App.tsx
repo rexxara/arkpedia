@@ -1,7 +1,9 @@
 /* tslint:disable*/
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
-import { Tabs } from '@ant-design/react-native';
+import { ScrollView, Text, View,Image} from 'react-native';
+import { Tabs ,List} from '@ant-design/react-native';
+import data from './src/arkData'
+console.log(data)
 const renderContent = (tab, index) => {
   const style = {
     paddingVertical: 40,
@@ -10,34 +12,31 @@ const renderContent = (tab, index) => {
     margin: 10,
     backgroundColor: '#ddd',
   };
-  const content = [1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+  const content = data.filter(i => i.level === tab.rank).map(i => {
     return (
-      <View key={`${index}_${i}`} style={style}>
+      <View key={`${index}_${i}`}style={{ marginTop: 80, marginBottom: 10 }}>
         <Text>
-          {tab.title} - {i}
+          {i.type}---{i.name}
         </Text>
+        <List>
+        {i.tags.map((v,k)=><List.Item key={k}>{v}</List.Item>)}
+        </List>
       </View>
     );
-  });
+  })
   return <ScrollView style={{ backgroundColor: '#fff' }}>{content}</ScrollView>;
 };
+
+
+
 export default class BasicTabsExample extends React.Component {
   render() {
-    const tabs = [
-      { title: 'First Tab' },
-      { title: 'Second Tab' },
-      { title: 'Third Tab' },
-    ];
     const tabs2 = [
-      { title: '1st Tab' },
-      { title: '2nd Tab' },
-      { title: '3rd Tab' },
-      { title: '4th Tab' },
-      { title: '5th Tab' },
-      { title: '6th Tab' },
-      { title: '7th Tab' },
-      { title: '8th Tab' },
-      { title: '9th Tab' },
+      { title: '2星', rank: 2 },
+      { title: '3星', rank: 3 },
+      { title: '4星', rank: 4 },
+      { title: '5星', rank: 5 },
+      { title: '6星', rank: 6 }
     ];
     const style = {
       alignItems: 'center',
@@ -47,17 +46,9 @@ export default class BasicTabsExample extends React.Component {
     };
     return (
       <View style={{ flex: 1 }}>
-        <Tabs tabs={tabs}>
           <View style={style}>
-            <Text>Content of First Tab</Text>
+          <Image source={require('./src/imgs/title.png')} />
           </View>
-          <View style={style}>
-            <Text>Content of Second Tab</Text>
-          </View>
-          <View style={style}>
-            <Text>Content of Third Tab</Text>
-          </View>
-        </Tabs>
         <View style={{ flex: 2 }}>
           <Tabs tabs={tabs2} initialPage={1} tabBarPosition="top">
             {renderContent}
