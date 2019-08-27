@@ -1,17 +1,34 @@
 
-interface workers{
-    name:string,
-    camp:string,
-    type:string,
-    level:Number
-    sex:String,
-    characteristic:string,
-    tags:string[],
-    hidden:boolean,
-    "name-en"?:string,
+interface workers {
+    name: string,
+    camp: string,
+    type: string,
+    level: Number
+    sex: String,
+    characteristic: string,
+    tags: string[],
+    hidden: boolean,
+    "name-en"?: string,
 
 }
-const data:Array<workers> = [
+export const tags = [{
+    name: "资质",
+    tags: ["新手", "资深干员", "高级资深干员"]
+}, {
+    name: "位置",
+    tags: ["近战位", "远程位"]
+}, {
+    name: "性别",
+    tags: ["男性干员", "女性干员"]
+}, {
+    name: "种类",
+    tags: ["先锋干员", "狙击干员", "医疗干员", "术士干员", "近卫干员", "重装干员", "辅助干员", "特种干员"]
+}, {
+    name: "词缀",
+    tags: ["治疗", "支援", "输出", "群攻", "减速", "生存", "防护", "削弱", "位移", "控场", "爆发", "召唤", "快速复活", "费用回复"]
+}]
+
+export const data: Array<workers> = [
     {
         "name": "暴行",
         "camp": "雷姆必拓",
@@ -1334,4 +1351,3 @@ const data:Array<workers> = [
         "name-en": "Saria"
     }
 ]
-export default data
